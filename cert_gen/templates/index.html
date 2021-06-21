@@ -1,0 +1,9 @@
+{% if request.user.username == 'richardmarin' %}
+  {% include "nav_bar.html" %}
+  {% include "indexs/ic_index.html" %}
+{% elif user.is_superuser %}
+  {% include "nav_bar.html" %}
+  {% include "indexs/ic_index.html" %}
+{% else %}
+  {% include "choices.html" %}
+{% endif %}
