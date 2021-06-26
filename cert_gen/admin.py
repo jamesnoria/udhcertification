@@ -43,8 +43,8 @@ class AniAmbienteAdmin(ImportExportModelAdmin):
     search_fields=('nombre_participante', 'codigo_udh')
 
 class ConfInterAdmin(ImportExportModelAdmin):
-    list_display=('nombre_participante', 'creacion_cert', 'dni', 'email', 'celular', 'pais', 'universidad', 'carrera', 'id')
-    search_fields=('nombre_participante', 'dni', 'universidad')
+    list_display=('nombre_participante', 'creacion_cert', 'dni', 'email', 'pais', 'id')
+    search_fields=('nombre_participante', 'dni')
 
 class RegistroGeneralAdmin(ImportExportModelAdmin):
     list_display=('id', 'nombre_participante', 'creacion_cert', 'email', 'celular', 'carrera', 'evento')

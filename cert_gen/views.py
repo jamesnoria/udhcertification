@@ -271,6 +271,7 @@ def db(request):
                 'registros' : registro,
             }
             return render(request, 'table.html', context)
+
     except AniversarioAmbiente.DoesNotExist:
         return render(request, 'not_found.html')
 
@@ -278,9 +279,7 @@ def test(request):
     stream = io.BytesIO()
     nombre = request.GET["nombre"]
     name = nombre.replace(',', '')
-    print(name)
     codigo = request.GET["validation_code"]
-
 
     if len(name) <= 22:
 

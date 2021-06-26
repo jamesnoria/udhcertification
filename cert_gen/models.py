@@ -100,18 +100,14 @@ class ConferenciaInternacional(models.Model):
     creacion_cert = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de emisión')
     dni = models.CharField(max_length=100, null=True, verbose_name='DNI')
     email = models.CharField(max_length=100, null=True, verbose_name='email')
-    celular = models.CharField(max_length=100, null=True, verbose_name='celular')
     pais = models.CharField(max_length=100, null=True, verbose_name='pais')
-    universidad = models.CharField(max_length=100, null=True, verbose_name='Universidad')
-    carrera = models.CharField(max_length=100, null=True, verbose_name='Escuela')
     evento = models.CharField(max_length=100, null=True)
-    validation_code = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.nombre_participante
 
     class Meta:
-        verbose_name = 'Conferencia Internacional'
+        verbose_name = 'BINDIN'
 
 class RegistroGeneral(models.Model):
     """
