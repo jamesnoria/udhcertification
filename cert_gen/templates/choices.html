@@ -1,98 +1,186 @@
 <!-- James Noria | Twitter: @jamesnoria | Contacto: jamesnoria@gmail.com -->
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="James Noria">
-  <title>Bienvenido</title>
-</head>
-<style type="text/css">
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #2F3242;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="James Noria" />
+    <title>Bienvenido</title>
+  </head>
+  <style type="text/css">
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2f3242;
+    }
 
-:root {
-    font-size: 10px;
-}
+    :root {
+      font-size: 10px;
+    }
 
-nav ul {
-    padding: 0;
-    list-style-type: none;
-}
+    nav ul {
+      padding: 0;
+      list-style-type: none;
+    }
 
-nav li {
-    width: 20rem;
-    height: 7rem;
-    font-size: 20px;
-    text-align: center;
-    line-height: 7rem;
-    font-family: sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    transition: 0.3s;
-    margin: 3rem;
-}
+    nav li {
+      width: 20rem;
+      height: 7rem;
+      font-size: 20px;
+      text-align: center;
+      line-height: 7rem;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      transition: 0.3s;
+      margin: 3rem;
+    }
 
-nav li::before,
-nav li::after {
-    content: '';
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    top: 0;
-    left: 0;
-    transition: 0.3s;
-}
+    nav li::before,
+    nav li::after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      top: 0;
+      left: 0;
+      transition: 0.3s;
+    }
 
-nav li::before {
-    background-color: white;
-    z-index: -1;
-    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
-}
+    nav li::before {
+      background-color: white;
+      z-index: -1;
+      box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    }
 
-nav li::after {
-    background-color: #81939A;
-    transform: translate(1.5rem, 1.5rem);
-    z-index: -2;
-}
+    nav li::after {
+      background-color: #81939a;
+      transform: translate(1.5rem, 1.5rem);
+      z-index: -2;
+    }
 
-nav li:hover {
-    transform: translate(1.5rem, 1.5rem);
-    color: white;
-}
+    nav li:hover {
+      transform: translate(1.5rem, 1.5rem);
+      color: white;
+    }
 
-nav li:hover::before {
-    background-color: #81939A;
-}
+    nav li:hover::before {
+      background-color: #81939a;
+    }
 
-nav li:hover::after {
-    background-color: white;
-    transform: translate(-1.5rem, -1.5rem);
-}
+    nav li:hover::after {
+      background-color: white;
+      transform: translate(-1.5rem, -1.5rem);
+    }
 
-a {
-  text-decoration: none;
-}
+    a {
+      text-decoration: none;
+    }
 
-strong:hover {
-    color: white;
-}
+    strong:hover {
+      color: white;
+    }
 
-</style>
-<body>
-<nav>
-  <ul>
-    <!-- <li><a href="https://udh-cert.herokuapp.com/register"><strong>Registrarme</strong></a></li> -->
-    <li><a href="https://udh-cert.herokuapp.com/buscador"><strong style="font-size: 18px;">Ver certificado</strong></a></li>
-    <li><a href="https://udh-cert.herokuapp.com/admin"><strong>Soy Mentor</strong></a></li>
-  </ul>
-</nav>
-</body>
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      width: 30%;
+      position: relative;
+      transition: all 5s ease-in-out;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 20px;
+      text-align: center;
+    }
+    .popup .close {
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+    .popup .close:hover {
+      color: #06d85f;
+    }
+    .popup .content {
+      max-height: 30%;
+      overflow: auto;
+      font-size: 20px;
+    }
+
+    @media screen and (max-width: 700px) {
+      .box {
+        width: 70%;
+      }
+      .popup {
+        width: 70%;
+      }
+    }
+  </style>
+  <body>
+    <nav>
+      <ul>
+        <!-- <li><a href="https://udh-cert.herokuapp.com/register"><strong>Registrarme</strong></a></li> -->
+        <li>
+          <a class="button" href="#popup1"
+            ><strong style="font-size: 18px">Ver certificado</strong></a
+          >
+        </li>
+        <li>
+          <a href="https://udh-cert.herokuapp.com/admin"
+            ><strong>Soy Mentor</strong></a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div id="popup1" class="overlay">
+      <div class="popup">
+        <h2>¿De que evento deseas ver?</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          <ul>
+            <li>
+              <a href="https://udh-cert.herokuapp.com/buscador"
+                >Aniversario Ambiental 2021</a
+              >
+            </li>
+            <li>
+              <a href="https://udh-cert.herokuapp.com/buscador_bindin"
+                >Bindin</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

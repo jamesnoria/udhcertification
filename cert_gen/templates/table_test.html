@@ -192,39 +192,45 @@
     }
   </style>
   <body>
-    <h2>¡GRACIAS POR PARTICIPAR!</h2>
+    <form action="/table_test/" method="GET">
+      <input name="dni" type="text">
+      <button>go</button>
+    </form>
     <div class="table-wrapper">
       <table class="fl-table">
         <thead>
           <tr>
             <th>NOMBRE Y APELLIDOS</th>
-            <th>DNI O CEDULA</th>
+            <th>CODIGO UDH</th>
             <th>EMAIL</th>
-            <th>PAÍS</th>
-            <th>EVENTO</th>
+            <th>CODIGO DE VALIDACIÓN</th>
             <th>CERTIFICADO</th>
           </tr>
         </thead>
         <tbody>
+          {% for registro in resultados %}
           <tr>
-            {% for registro in registros %}
             <td>{{ registro.nombre_participante.title }}</td>
-            <td>{{ registro.dni }}</td>
+            <td>{{ registro.codigo_udh }}</td>
             <td>{{ registro.email }}</td>
-            <td>{{ registro.pais }}</td>
-            <td>{{ registro.evento }}</td>
+            <td>{{ registro.validation_code }}</td>
             <td>
-              <form action="/test_bindin/" method="GET">
+              <form action="/test/" method="GET">
                 <input
                   type="hidden"
                   name="nombre"
                   value="{{ registro.nombre_participante }}"
                 />
+                <input
+                  type="hidden"
+                  name="validation_code"
+                  value="{{ registro.validation_code }}"
+                />
                 <button class="button">Descargar</button>
               </form>
             </td>
-            {% endfor %}
           </tr>
+          {% endfor %}
         </tbody>
 
         <tbody></tbody>

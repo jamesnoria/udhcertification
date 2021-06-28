@@ -1,0 +1,115 @@
+<!-- James Noria | Twitter: @jamesnoria | Contacto: jamesnoria@gmail.com -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="James Noria" />
+    <title>Buscador</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 20px;
+      font-family: "Roboto";
+    }
+
+    body {
+      background: #2f3242;
+    }
+
+    .wrapper {
+      height: 100vh;
+      position: realtive;
+    }
+
+    .fas.fa-search {
+      color: #fff;
+      font-size: 2rem;
+      background: #333;
+      padding: 1rem;
+      border-radius: 100%;
+      margin: 0 0 1rem 0;
+    }
+
+    .card-content {
+      max-width: 30rem;
+      background-color: #fff;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 1rem;
+      padding: 4rem 0.5rem;
+      box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .card-content h1 {
+      text-transform: uppercase;
+      margin: 0 0 1rem 0;
+    }
+
+    .card-content p {
+      font-size: 0.8rem;
+      margin: 0 0 2rem 0;
+    }
+
+    input {
+      padding: 0.8rem 1rem;
+      width: 40%;
+      border-radius: 5rem;
+      outline: none;
+      border: 0.1rem solid #d1d1d1;
+      font-size: 0.7rem;
+    }
+
+    ::placeholder {
+      color: #d1d1d1;
+    }
+
+    .subscribe-btn {
+      padding: 0.8rem 2rem;
+      border-radius: 5rem;
+      background: #4a525f;
+      color: #fff;
+      font-size: 0.7rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"
+      integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E"
+      crossorigin="anonymous"
+    />
+
+    <div class="wrapper">
+      <form action="/db_bindin/" method="GET" class="card-content">
+        <div class="container">
+          <div class="image">
+            <i class="fas fa-search"></i>
+          </div>
+          <h1>Certificados - BINDIN</h1>
+          <p>
+            Introduce tu DNI o número de cedula
+          </p>
+        </div>
+        <div class="form-input">
+          <label for="name"></label>
+          <input type="text" id="dni" name="dni" placeholder="DNI" />
+          <button class="subscribe-btn">Buscar</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

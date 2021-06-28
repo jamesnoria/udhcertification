@@ -28,12 +28,20 @@ urlpatterns = [
     path('generator_ani/', views.generator_ani),
     path('generator_conf/', views.generator_conf),
 
+    # Ambiental
     path('buscador/', views.buscador),
     path('db/', views.db),
     path('test/', views.test),
-
     path('validator/', views.validator),
     path('validator_action/', views.validator_action),
+
+    # Bindin
+    path('buscador_bindin/', views.buscador_bindin),
+    path('db_bindin/', views.db_bindin),
+    path('test_bindin/', views.test_bindin),
+
+    path('table_test/', views.table_test),
+    path('test2/', views.test2),
 
 ]
 
@@ -42,4 +50,5 @@ admin.autodiscover()
 admin.site.enable_nav_sidebar = False
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

@@ -14,41 +14,51 @@ from .models import ConferenciaInternacional
 import io
 from PIL import Image, ImageDraw, ImageFont
 
+
 def index(request):
 
     return render(request, 'index.html')
+
 
 def registro_general(request):
 
     return render(request, 'register_form.html')
 
+
 def innovation_challenge(request):
 
     return render(request, 'generadores/innovation_cha.html')
+
 
 def mentores(request):
 
     return render(request, 'generadores/mentores.html')
 
+
 def ponentes(request):
 
     return render(request, 'generadores/ponentes.html')
+
 
 def des_log(request):
 
     return render(request, 'generadores/des_logistica.html')
 
+
 def innova(request):
 
     return render(request, 'generadores/innova62.html')
+
 
 def ani_ambiente(request):
 
     return render(request, 'generadores/ambiente.html')
 
+
 def conf_internacional(request):
 
     return render(request, 'generadores/conf_inter.html')
+
 
 def generator_ic(request):
     """
@@ -61,26 +71,30 @@ def generator_ic(request):
         db.username = request.user.username
         db.dni = request.GET["dni"]
         db.carrera = request.GET["carrera"]
-        db.evento= "Innovation Challenge"
+        db.evento = "Innovation Challenge"
         db.save()
 
     stream = io.BytesIO()
     nombre = request.GET["name"]
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
+    certificado = Image.open(
+        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
     nuevo = ImageDraw.Draw(certificado)
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+    coordenadas = (589, 483)
+    color_texto = (0, 0, 0)
+    tipo_letra = ImageFont.truetype(
+        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
 
     nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
     certificado.save(stream, format='pdf')
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+    pdf_response = HttpResponse(
+        stream.getvalue(), content_type='application/pdf')
     pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
 
     return pdf_response
+
 
 def generator_men(request):
     """
@@ -96,20 +110,24 @@ def generator_men(request):
     stream = io.BytesIO()
     nombre = request.GET["name"]
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
+    certificado = Image.open(
+        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
     nuevo = ImageDraw.Draw(certificado)
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+    coordenadas = (589, 483)
+    color_texto = (0, 0, 0)
+    tipo_letra = ImageFont.truetype(
+        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
 
     nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
     certificado.save(stream, format='pdf')
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+    pdf_response = HttpResponse(
+        stream.getvalue(), content_type='application/pdf')
     pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
 
     return pdf_response
+
 
 def generator_pon(request):
     """
@@ -125,20 +143,24 @@ def generator_pon(request):
     stream = io.BytesIO()
     nombre = request.GET["name"]
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
+    certificado = Image.open(
+        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
     nuevo = ImageDraw.Draw(certificado)
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+    coordenadas = (589, 483)
+    color_texto = (0, 0, 0)
+    tipo_letra = ImageFont.truetype(
+        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
 
     nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
     certificado.save(stream, format='pdf')
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+    pdf_response = HttpResponse(
+        stream.getvalue(), content_type='application/pdf')
     pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
 
     return pdf_response
+
 
 def generator_des_log(request):
     """
@@ -154,20 +176,24 @@ def generator_des_log(request):
     stream = io.BytesIO()
     nombre = request.GET["name"]
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
+    certificado = Image.open(
+        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
     nuevo = ImageDraw.Draw(certificado)
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+    coordenadas = (589, 483)
+    color_texto = (0, 0, 0)
+    tipo_letra = ImageFont.truetype(
+        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
 
     nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
     certificado.save(stream, format='pdf')
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+    pdf_response = HttpResponse(
+        stream.getvalue(), content_type='application/pdf')
     pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
 
     return pdf_response
+
 
 def generator_innova(request):
     """
@@ -183,20 +209,24 @@ def generator_innova(request):
     stream = io.BytesIO()
     nombre = request.GET["name"]
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
+    certificado = Image.open(
+        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
     nuevo = ImageDraw.Draw(certificado)
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+    coordenadas = (589, 483)
+    color_texto = (0, 0, 0)
+    tipo_letra = ImageFont.truetype(
+        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
 
     nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
     certificado.save(stream, format='pdf')
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+    pdf_response = HttpResponse(
+        stream.getvalue(), content_type='application/pdf')
     pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
 
     return pdf_response
+
 
 def generator_ani(request):
     """
@@ -205,27 +235,91 @@ def generator_ani(request):
     if request.method == 'GET':
 
         db = AniversarioAmbiente()
-        db.nombre_participante = request.GET["name"].title()
-        db.username = request.user.username
+        db.nombre_participante = request.GET["name"].upper()
+        db.codigo_udh = request.GET["dni"]
+        db.email = request.GET["email"]
         db.save()
 
     stream = io.BytesIO()
     nombre = request.GET["name"]
+    name = nombre.replace(',', '')
+    codigo = 'none'
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
+    if len(name) <= 22:
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
+        nuevo = ImageDraw.Draw(certificado)
 
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
+        coordenadas = (531, 564)
+        coordenadas_2 = (222, 364)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+        tipo_letra_2 = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
+        certificado.save(stream, format='pdf')
 
-    return pdf_response
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    elif len(name) <= 30:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (531, 564)
+        coordenadas_2 = (222, 364)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 180)
+        tipo_letra_2 = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    else:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (528, 606)
+        coordenadas_2 = (222, 364)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 150)
+        tipo_letra_2 = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
 
 def generator_conf(request):
     """
@@ -241,41 +335,51 @@ def generator_conf(request):
     stream = io.BytesIO()
     nombre = request.GET["name"]
 
-    certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
+    certificado = Image.open(
+        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
     nuevo = ImageDraw.Draw(certificado)
 
-    coordenadas = (589,483)
-    color_texto = (0,0,0)
-    tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+    coordenadas = (589, 483)
+    color_texto = (0, 0, 0)
+    tipo_letra = ImageFont.truetype(
+        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
 
     nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
     certificado.save(stream, format='pdf')
 
-    pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+    pdf_response = HttpResponse(
+        stream.getvalue(), content_type='application/pdf')
     pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
 
     return pdf_response
 
-def buscador(request):
+# ----- AMBIENTAL ----->
 
+
+def buscador(request):
+    """ Buscador para ambiental """
     return render(request, 'buscador.html')
 
-def db(request):
 
+def db(request):
+    """ BD que conecta con table.html """
     codigo_udh = request.GET["dni"]
 
     try:
         if AniversarioAmbiente.objects.get(codigo_udh__exact=codigo_udh):
-            registro = AniversarioAmbiente.objects.filter(codigo_udh=codigo_udh)
+            registro = AniversarioAmbiente.objects.filter(
+                codigo_udh=codigo_udh)
             context = {
-                'registros' : registro,
+                'registros': registro,
             }
             return render(request, 'table.html', context)
 
     except AniversarioAmbiente.DoesNotExist:
         return render(request, 'not_found.html')
 
+
 def test(request):
+    """ Generador en table.html """
     stream = io.BytesIO()
     nombre = request.GET["nombre"]
     name = nombre.replace(',', '')
@@ -283,78 +387,206 @@ def test(request):
 
     if len(name) <= 22:
 
-        certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (531,564)
-        coordenadas_2 = (222,364)
-        color_texto = (0,0,0)
-        tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-        tipo_letra_2 = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
+        coordenadas = (531, 564)
+        coordenadas_2 = (222, 364)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+        tipo_letra_2 = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
 
-        nuevo.text(coordenadas, name.title(), fill=color_texto, font=tipo_letra)
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
         nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
         certificado.save(stream, format='pdf')
 
-        pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
         pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
 
         return pdf_response
 
     elif len(name) <= 30:
 
-        certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (531,564)
-        coordenadas_2 = (222,364)
-        color_texto = (0,0,0)
-        tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 180)
-        tipo_letra_2 = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
+        coordenadas = (531, 564)
+        coordenadas_2 = (222, 364)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 180)
+        tipo_letra_2 = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
 
-        nuevo.text(coordenadas, name.title(), fill=color_texto, font=tipo_letra)
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
         nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
         certificado.save(stream, format='pdf')
 
-        pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
         pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
 
         return pdf_response
 
     else:
 
-        certificado = Image.open(f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (528,606)
-        coordenadas_2 = (222,364)
-        color_texto = (0,0,0)
-        tipo_letra = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 150)
-        tipo_letra_2 = ImageFont.truetype(f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
+        coordenadas = (528, 606)
+        coordenadas_2 = (222, 364)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 150)
+        tipo_letra_2 = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
 
-        nuevo.text(coordenadas, name.title(), fill=color_texto, font=tipo_letra)
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
         nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
         certificado.save(stream, format='pdf')
 
-        pdf_response = HttpResponse(stream.getvalue(), content_type='application/pdf')
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
         pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
 
         return pdf_response
 
-def validator(request):
 
+def validator(request):
+    """ Validator.html """
     return render(request, 'validator.html')
 
-def validator_action(request):
 
+def validator_action(request):
+    """ db que conecta con validator """
     codigo_udh = request.GET["dni"]
 
     try:
         if AniversarioAmbiente.objects.get(validation_code__exact=codigo_udh):
-            registro = AniversarioAmbiente.objects.filter(validation_code=codigo_udh)
+            registro = AniversarioAmbiente.objects.filter(
+                validation_code=codigo_udh)
             context = {
-                'registros' : registro,
+                'registros': registro,
             }
             return render(request, 'success.html', context)
     except AniversarioAmbiente.DoesNotExist:
         return render(request, 'not_found.html')
+
+# ----- BINDIN ----->
+
+
+def buscador_bindin(request):
+    """ buscador para buscador_bindin.html """
+    return render(request, 'buscador_bindin.html')
+
+
+def db_bindin(request):
+    """ db que conecnta con table_bindin.html """
+    dni = request.GET["dni"]
+
+    try:
+        if ConferenciaInternacional.objects.get(dni__exact=dni):
+            registro = ConferenciaInternacional.objects.filter(
+                dni=dni)
+            context = {
+                'registros': registro,
+            }
+            return render(request, 'table_bindin.html', context)
+
+    except ConferenciaInternacional.DoesNotExist:
+        return render(request, 'not_found.html')
+
+
+def test_bindin(request):
+    """ Generador en table_bindin.html """
+    stream = io.BytesIO()
+    name = request.GET["nombre"]
+
+    if len(name) <= 22:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpeg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (266, 296)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    elif len(name) <= 30:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpeg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (266, 326)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 150)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    else:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpeg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (266, 346)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 120)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+def test2(request):
+
+    return render(request, 'table_test.html')
+
+def table_test(request):
+
+    resultados = ConferenciaInternacional.objects.all()
+    return render(request, 'table_test.html', {'resultados':resultados})
+
+    # if ConferenciaInternacional.objects.get(dni__exact=codigo_udh):
+    #     registro = ConferenciaInternacional.objects.filter(
+    #         dni=codigo_udh)
+    #     context = {
+    #         'registros': registro,
+    #     }
+    #     return render(request, 'table_test.html', context)

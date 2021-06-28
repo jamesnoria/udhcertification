@@ -12,6 +12,7 @@ from .models import Innova
 from .models import AniversarioAmbiente
 from .models import ConferenciaInternacional
 from .models import RegistroGeneral
+from .models import Bindin
 
 class RegistroAdmin(ImportExportModelAdmin):
     list_display=('nombre_alumno', 'creacion_cert', 'username', 'dni', 'carrera', 'id')
@@ -51,6 +52,10 @@ class RegistroGeneralAdmin(ImportExportModelAdmin):
     search_fields=('nombre_participante', 'codigo_estudiante')
     list_filter =('evento', 'carrera',)
 
+class BindinAdmin(ImportExportModelAdmin):
+    list_display=('nombre_participante', 'creacion_cert', 'dni', 'email', 'pais', 'id')
+    search_fields=('nombre_participante', 'dni')
+
 admin.site.register(Registro, RegistroAdmin)
 admin.site.register(Mentore, MentoreAdmin)
 admin.site.register(Ponentes, PonentesAdmin)
@@ -59,5 +64,6 @@ admin.site.register(Innova, InnovaAdmin)
 admin.site.register(AniversarioAmbiente, AniAmbienteAdmin)
 admin.site.register(ConferenciaInternacional, ConfInterAdmin)
 admin.site.register(RegistroGeneral, RegistroGeneralAdmin)
+admin.site.register(Bindin, BindinAdmin)
 
 admin.site.site_header = 'UDH - CERTIFICADOS'
