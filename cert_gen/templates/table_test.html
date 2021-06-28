@@ -1,4 +1,5 @@
 <!-- James Noria | Twitter: @jamesnoria | Contacto: jamesnoria@gmail.com -->
+{% include "test.html" %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -192,28 +193,23 @@
     }
   </style>
   <body>
-    <form action="/table_test/" method="GET">
-      <input name="dni" type="text">
-      <button>go</button>
-    </form>
-    <div class="table-wrapper">
       <table class="fl-table">
         <thead>
           <tr>
             <th>NOMBRE Y APELLIDOS</th>
-            <th>CODIGO UDH</th>
+            <th>DNI</th>
             <th>EMAIL</th>
-            <th>CODIGO DE VALIDACIÓN</th>
+            <th>PAIS</th>
             <th>CERTIFICADO</th>
           </tr>
         </thead>
         <tbody>
-          {% for registro in resultados %}
+          {% for bindin in bindins %}
           <tr>
-            <td>{{ registro.nombre_participante.title }}</td>
-            <td>{{ registro.codigo_udh }}</td>
-            <td>{{ registro.email }}</td>
-            <td>{{ registro.validation_code }}</td>
+            <td>{{ bindin.nombre_participante.title }}</td>
+            <td>{{ bindin.dni }}</td>
+            <td>{{ bindin.email }}</td>
+            <td>{{ bindin.pais }}</td>
             <td>
               <form action="/test/" method="GET">
                 <input

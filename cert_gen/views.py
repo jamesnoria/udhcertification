@@ -10,6 +10,7 @@ from .models import Des_Log
 from .models import Innova
 from .models import AniversarioAmbiente
 from .models import ConferenciaInternacional
+from .models import Bindin
 
 import io
 from PIL import Image, ImageDraw, ImageFont
@@ -576,17 +577,27 @@ def test_bindin(request):
 
 def test2(request):
 
-    return render(request, 'table_test.html')
+    bindin = Bindin.objects.all()
+    context = {
+        'bindins' : bindin,
+        # 'registros': registro,
+    }
+    return render(request, 'table_test.html', context)
 
 def table_test(request):
 
-    resultados = ConferenciaInternacional.objects.all()
-    return render(request, 'table_test.html', {'resultados':resultados})
+    codigo_udh = request.GET["dni"]
 
-    # if ConferenciaInternacional.objects.get(dni__exact=codigo_udh):
-    #     registro = ConferenciaInternacional.objects.filter(
-    #         dni=codigo_udh)
-    #     context = {
-    #         'registros': registro,
-    #     }
-    #     return render(request, 'table_test.html', context)
+    if ConferenciaInternacional.objects.get(dni__exact=codigo_udh):
+        # context = {
+        #     'registros':registro,
+        # }
+
+        db = Bindin()
+        # db.nombre_participante = request.GET["user_name"]
+        db.dni = ConferenciaInternacional.objects.get(dni__exact=codigo_udh)
+        # db.email = request.GET["user_email"]
+        # db.pais = request.GET["user_pais"]
+        db.save()
+
+    # return render(request, 'table_test.html', context)
