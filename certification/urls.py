@@ -40,8 +40,10 @@ urlpatterns = [
     path('db_bindin/', views.db_bindin),
     path('test_bindin/', views.test_bindin),
 
-    path('table_test/', views.table_test),
-    path('test2/', views.test2),
+    #Asistencia Bindin2
+    path('buscador_asistencia/', views.buscador_asistencia),
+    path('table_validation/', views.table_validation),
+    path('table_asistencia/', views.table_bindin2),
 
 ]
 

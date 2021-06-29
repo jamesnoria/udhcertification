@@ -575,29 +575,43 @@ def test_bindin(request):
 
         return pdf_response
 
-def test2(request):
+
+# ----- ASISTENCIA ---->
+
+def buscador_asistencia(request):
+    """ Buscador con dni y tabla - ONLY HTML """
+    return render(request, 'table_dni_finder.html')
+
+
+def table_bindin2(request):
+    """ Se recoge datos de dni validado y se alimenta BD de
+    nuevo bindin para luego renderizarlo en table2.html  """
+    db = Bindin()
+    db.nombre_participante = request.GET["user_name"]
+    db.dni = request.GET["user_dni"]
+    db.email = request.GET["user_email"]
+    db.pais = request.GET["user_pais"]
+    db.save()
 
     bindin = Bindin.objects.all()
     context = {
-        'bindins' : bindin,
-        # 'registros': registro,
+        'bindins': bindin,
     }
-    return render(request, 'table_test.html', context)
+    return render(request, 'table_bindin2.html', context)
 
-def table_test(request):
+
+def table_validation(request):
+    """ Backend que valida que el usuario sea miembro del semillero """
 
     codigo_udh = request.GET["dni"]
 
-    if ConferenciaInternacional.objects.get(dni__exact=codigo_udh):
-        # context = {
-        #     'registros':registro,
-        # }
+    try:
+        if ConferenciaInternacional.objects.get(dni__exact=codigo_udh):
+            registro = ConferenciaInternacional.objects.filter(dni=codigo_udh)
+            context = {
+                'registros': registro,
+            }
 
-        db = Bindin()
-        # db.nombre_participante = request.GET["user_name"]
-        db.dni = ConferenciaInternacional.objects.get(dni__exact=codigo_udh)
-        # db.email = request.GET["user_email"]
-        # db.pais = request.GET["user_pais"]
-        db.save()
-
-    # return render(request, 'table_test.html', context)
+        return render(request, 'table_dni_finder.html', context)
+    except ConferenciaInternacional.DoesNotExist:
+        return render(request, 'table_dni_finder.html')

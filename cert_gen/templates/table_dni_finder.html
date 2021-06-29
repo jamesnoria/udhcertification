@@ -1,5 +1,4 @@
 <!-- James Noria | Twitter: @jamesnoria | Contacto: jamesnoria@gmail.com -->
-{% include "test.html" %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -26,6 +25,7 @@
       letter-spacing: 1px;
       color: white;
       padding: 30px 0;
+      padding-bottom: 2px;
     }
 
     /* Table Styles */
@@ -191,8 +191,39 @@
     .button:focus {
       outline: 0;
     }
+    input {
+      padding: 0.8rem 1rem;
+      width: 40%;
+      border-radius: 5rem;
+      outline: none;
+      border: 0.1rem solid #d1d1d1;
+      font-size: 0.7rem;
+    }
+    .subscribe-btn {
+      padding: 0.8rem 2rem;
+      border-radius: 5rem;
+      background: #4a525f;
+      color: #fff;
+      font-size: 0.7rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .form-search {
+      text-align: center;
+    }
   </style>
   <body>
+    <h2>Registro de Asistencia <br> <p>Inserte su DNI, verifique sus datos y confirme su asistencia</p></h2>
+    <form class="form-search" action="/table_validation/" method="GET">
+      <div class="form-input">
+        <label for="name"></label>
+        <input type="text" id="dni" name="dni" placeholder="DNI" />
+        <button class="subscribe-btn">Verificar</button>
+      </div>
+    </form>
+    <br>
+    <div class="table-wrapper">
       <table class="fl-table">
         <thead>
           <tr>
@@ -200,34 +231,44 @@
             <th>DNI</th>
             <th>EMAIL</th>
             <th>PAIS</th>
-            <th>CERTIFICADO</th>
+            <th>ASISTENCIA</th>
           </tr>
-        </thead>
-        <tbody>
-          {% for bindin in bindins %}
+          </thead>
+          <tbody>
+          {% for registro in registros %}
           <tr>
-            <td>{{ bindin.nombre_participante.title }}</td>
-            <td>{{ bindin.dni }}</td>
-            <td>{{ bindin.email }}</td>
-            <td>{{ bindin.pais }}</td>
+            <td>{{ registro.nombre_participante.title }}</td>
+            <td>{{ registro.dni }}</td>
+            <td>{{ registro.email }}</td>
+            <td>{{ registro.pais }}</td>
             <td>
-              <form action="/test/" method="GET">
-                <input
-                  type="hidden"
-                  name="nombre"
-                  value="{{ registro.nombre_participante }}"
-                />
-                <input
-                  type="hidden"
-                  name="validation_code"
-                  value="{{ registro.validation_code }}"
-                />
-                <button class="button">Descargar</button>
-              </form>
-            </td>
-          </tr>
-          {% endfor %}
+              <form action="/table_asistencia/" method="GET">
+                  <input
+                    type="hidden"
+                    name="user_name"
+                    value="{{ registro.nombre_participante }}"
+                  />
+                  <input
+                    type="hidden"
+                    name="user_dni"
+                    value="{{ registro.dni }}"
+                  />
+                  <input
+                    type="hidden"
+                    name="user_email"
+                    value="{{ registro.email }}"
+                  />
+                  <input
+                    type="hidden"
+                    name="user_pais"
+                    value="{{ registro.pais }}"
+                  />
+                  <button class="button">Confirmar</button>
+                </form>
+              </td>
+            </tr>
         </tbody>
+        {% endfor %}
 
         <tbody></tbody>
       </table>
