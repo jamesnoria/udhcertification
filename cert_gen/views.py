@@ -504,7 +504,7 @@ def db_bindin(request):
             return render(request, 'table_bindin.html', context)
 
     except ConferenciaInternacional.DoesNotExist:
-        return render(request, 'not_found.html')
+        return render(request, 'not_found_bindin.html')
 
 
 def test_bindin(request):
