@@ -137,7 +137,7 @@ class ConferenciaInternacional(models.Model):
         return self.nombre_participante
 
     class Meta:
-        verbose_name = 'BINDIN'
+        verbose_name = 'Semillero Internacional'
 
 
 class RegistroGeneral(models.Model):
