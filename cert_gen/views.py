@@ -9,6 +9,7 @@ from .models import Ponentes
 from .models import Des_Log
 from .models import Innova
 from .models import AniversarioAmbiente
+from .models import AniversarioAmbientalDocente
 from .models import ConferenciaInternacional
 from .models import Bindin
 
@@ -461,6 +462,101 @@ def test(request):
 
         return pdf_response
 
+# ----- AMBIENTAL - ORGANIZADORES ---->
+
+
+def buscador_docente(request):
+    """ Buscador para organizadores AMBIENTAL """
+    return render(request, 'buscador_amb_doc.html')
+
+
+def db_docente(request):
+    """ BD que conecta con table_amb_doc.html """
+    codigo_udh = request.GET["dni"]
+
+    try:
+        if AniversarioAmbientalDocente.objects.get(dni__exact=codigo_udh):
+            registro = AniversarioAmbientalDocente.objects.filter(
+                dni=codigo_udh)
+            context = {
+                'registros': registro,
+            }
+            return render(request, 'table_amb_doc.html', context)
+
+    except AniversarioAmbientalDocente.DoesNotExist:
+        return render(request, 'not_found_amb_org.html')
+
+
+def test_docente(request):
+    """ Generador para certificados organizadores """
+    stream = io.BytesIO()
+    name = request.GET["nombre"]
+
+    if len(name) <= 22:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_organizador.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (953, 865)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 230)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    elif len(name) <= 30:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_organizador.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (846, 870)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    else:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_organizador.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (801, 875)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+
+# ---- VALIDADOR CODIGO QR AMBIENTAL ----->
 
 def validator(request):
     """ Validator.html """
@@ -515,13 +611,13 @@ def test_bindin(request):
     if len(name) <= 22:
 
         certificado = Image.open(
-            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpeg')
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (266, 296)
+        coordenadas = (925, 959)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 400)
 
         nuevo.text(coordenadas, name.title(),
                    fill=color_texto, font=tipo_letra)
@@ -536,13 +632,13 @@ def test_bindin(request):
     elif len(name) <= 30:
 
         certificado = Image.open(
-            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpeg')
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (266, 326)
+        coordenadas = (1056, 1023)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 150)
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
 
         nuevo.text(coordenadas, name.title(),
                    fill=color_texto, font=tipo_letra)
@@ -557,13 +653,13 @@ def test_bindin(request):
     else:
 
         certificado = Image.open(
-            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpeg')
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (266, 346)
+        coordenadas = (851, 1023)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 120)
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
 
         nuevo.text(coordenadas, name.title(),
                    fill=color_texto, font=tipo_letra)

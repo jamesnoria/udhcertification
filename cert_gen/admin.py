@@ -10,6 +10,7 @@ from .models import Ponentes
 from .models import Des_Log
 from .models import Innova
 from .models import AniversarioAmbiente
+from .models import AniversarioAmbientalDocente
 from .models import ConferenciaInternacional
 from .models import RegistroGeneral
 from .models import Bindin
@@ -43,6 +44,10 @@ class AniAmbienteAdmin(ImportExportModelAdmin):
     list_display=('nombre_participante', 'creacion_cert', 'codigo_udh', 'email', 'validation_code', 'id')
     search_fields=('nombre_participante', 'codigo_udh')
 
+class AniAmbienteDocenteAdmin(ImportExportModelAdmin):
+    list_display=('docente_nombre', 'dni', 'email', 'id')
+    search_fields=('docente_nombre', 'dni')
+
 class ConfInterAdmin(ImportExportModelAdmin):
     list_display=('nombre_participante', 'creacion_cert', 'dni', 'email', 'pais', 'id')
     search_fields=('nombre_participante', 'dni')
@@ -62,6 +67,7 @@ admin.site.register(Ponentes, PonentesAdmin)
 admin.site.register(Des_Log, DesLogAdmin)
 admin.site.register(Innova, InnovaAdmin)
 admin.site.register(AniversarioAmbiente, AniAmbienteAdmin)
+admin.site.register(AniversarioAmbientalDocente, AniAmbienteDocenteAdmin)
 admin.site.register(ConferenciaInternacional, ConfInterAdmin)
 admin.site.register(RegistroGeneral, RegistroGeneralAdmin)
 admin.site.register(Bindin, BindinAdmin)

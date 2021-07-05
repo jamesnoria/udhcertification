@@ -118,6 +118,26 @@ class AniversarioAmbiente(models.Model):
 
     class Meta:
         verbose_name = 'Aniversario Ambiente'
+        verbose_name_plural = 'Aniversario Ambiental ALUMNOS'
+
+
+class AniversarioAmbientalDocente(models.Model):
+    """Model definition for AniversarioAmbientalDocente."""
+
+    docente_nombre = models.CharField(
+        max_length=50, null=True, verbose_name='Nombre Docente')
+    dni = models.CharField(max_length=50, null=True, verbose_name='dni')
+    email = models.CharField(max_length=50, null=True, verbose_name='email')
+
+    class Meta:
+        """Meta definition for AniversarioAmbientalDocente."""
+
+        verbose_name = 'Aniversario Ambiental ORGANIZADORES'
+        verbose_name_plural = 'Aniversario Ambiental ORGANIZADORES'
+
+    def __str__(self):
+        """Unicode representation of AniversarioAmbientalDocente."""
+        return self.docente_nombre
 
 
 class ConferenciaInternacional(models.Model):
@@ -138,6 +158,7 @@ class ConferenciaInternacional(models.Model):
 
     class Meta:
         verbose_name = 'Semillero Internacional'
+        verbose_name_plural = 'BINDIN'
 
 
 class RegistroGeneral(models.Model):

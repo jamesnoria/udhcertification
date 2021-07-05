@@ -35,12 +35,17 @@ urlpatterns = [
     path('validator/', views.validator),
     path('validator_action/', views.validator_action),
 
+    # Ambiental - Organizadores
+    path('buscador_docente/', views.buscador_docente),
+    path('db_docente/', views.db_docente),
+    path('test_docente/', views.test_docente),
+
     # Bindin
     path('buscador_bindin/', views.buscador_bindin),
     path('db_bindin/', views.db_bindin),
     path('test_bindin/', views.test_bindin),
 
-    #Asistencia Bindin2
+    # Asistencia Bindin2
     path('buscador_asistencia/', views.buscador_asistencia),
     path('table_validation/', views.table_validation),
     path('table_asistencia/', views.table_bindin2),
