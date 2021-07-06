@@ -11,6 +11,7 @@ from .models import Innova
 from .models import AniversarioAmbiente
 from .models import AniversarioAmbientalDocente
 from .models import ConferenciaInternacional
+from .models import ConferenciaInternacionalOrg
 from .models import Bindin
 
 import io
@@ -671,6 +672,96 @@ def test_bindin(request):
 
         return pdf_response
 
+
+# --- BINDIN ORGANIZADOR --->
+
+def buscador_bindin_org(request):
+
+    return render(request, 'buscador_bindin_org.html')
+
+def db_bindin_org(request):
+    """ db que conecnta con table_bindin_org.html """
+    dni = request.GET["dni"]
+
+    try:
+        if ConferenciaInternacionalOrg.objects.get(dni__exact=dni):
+            registro = ConferenciaInternacionalOrg.objects.filter(
+                dni=dni)
+            context = {
+                'registros': registro,
+            }
+            return render(request, 'table_bindin_org.html', context)
+
+    except ConferenciaInternacionalOrg.DoesNotExist:
+        return render(request, 'not_found_ibndin_org.html')
+
+def test_bindin_org(request):
+    """ Generador en table_bindin_org.html """
+    stream = io.BytesIO()
+    name = request.GET["nombre"]
+
+    if len(name) <= 22:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin_org.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (925, 959)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 400)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    elif len(name) <= 30:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin_org.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (1056, 1023)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
+
+    else:
+
+        certificado = Image.open(
+            f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin_org.jpg')
+        nuevo = ImageDraw.Draw(certificado)
+
+        coordenadas = (851, 1023)
+        color_texto = (0, 0, 0)
+        tipo_letra = ImageFont.truetype(
+            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
+
+        nuevo.text(coordenadas, name.title(),
+                   fill=color_texto, font=tipo_letra)
+        certificado.save(stream, format='pdf')
+
+        pdf_response = HttpResponse(
+            stream.getvalue(), content_type='application/pdf')
+        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
+
+        return pdf_response
 
 # ----- ASISTENCIA ---->
 

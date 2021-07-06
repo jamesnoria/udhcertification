@@ -9,9 +9,15 @@ from .models import Mentore
 from .models import Ponentes
 from .models import Des_Log
 from .models import Innova
+
+# --- Aniversario Ambiental --->
 from .models import AniversarioAmbiente
 from .models import AniversarioAmbientalDocente
+
+# --- Semillero Internacional --->
 from .models import ConferenciaInternacional
+from .models import ConferenciaInternacionalOrg
+
 from .models import RegistroGeneral
 from .models import Bindin
 
@@ -52,6 +58,10 @@ class ConfInterAdmin(ImportExportModelAdmin):
     list_display=('nombre_participante', 'creacion_cert', 'dni', 'email', 'pais', 'id')
     search_fields=('nombre_participante', 'dni')
 
+class ConfInterOrgAdmin(ImportExportModelAdmin):
+    list_display=('nombre_organizador', 'dni', 'universidad','id')
+    search_fields=('nombre_organizador', 'dni')
+
 class RegistroGeneralAdmin(ImportExportModelAdmin):
     list_display=('id', 'nombre_participante', 'creacion_cert', 'email', 'celular', 'carrera', 'evento')
     search_fields=('nombre_participante', 'codigo_estudiante')
@@ -68,6 +78,7 @@ admin.site.register(Des_Log, DesLogAdmin)
 admin.site.register(Innova, InnovaAdmin)
 admin.site.register(AniversarioAmbiente, AniAmbienteAdmin)
 admin.site.register(AniversarioAmbientalDocente, AniAmbienteDocenteAdmin)
+admin.site.register(ConferenciaInternacionalOrg, ConfInterOrgAdmin)
 admin.site.register(ConferenciaInternacional, ConfInterAdmin)
 admin.site.register(RegistroGeneral, RegistroGeneralAdmin)
 admin.site.register(Bindin, BindinAdmin)

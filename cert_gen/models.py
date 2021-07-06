@@ -98,6 +98,7 @@ class Innova(models.Model):
     class Meta:
         verbose_name = 'Innova 62'
 
+# ----- Aniversario Ambiental ---->
 
 class AniversarioAmbiente(models.Model):
     """
@@ -139,6 +140,7 @@ class AniversarioAmbientalDocente(models.Model):
         """Unicode representation of AniversarioAmbientalDocente."""
         return self.docente_nombre
 
+# ----- BINDIN ----->
 
 class ConferenciaInternacional(models.Model):
     """
@@ -158,7 +160,23 @@ class ConferenciaInternacional(models.Model):
 
     class Meta:
         verbose_name = 'Semillero Internacional'
-        verbose_name_plural = 'BINDIN'
+        verbose_name_plural = 'Semillero Internacional - PARTICIPANTES'
+
+class ConferenciaInternacionalOrg(models.Model):
+    """Model definition for ConferenciaInternacionalOrg."""
+
+    nombre_organizador = models.CharField(max_length=100, null=True, verbose_name="Nombre y Apellidos")
+    dni = models.CharField(max_length=100, null=True, verbose_name="dni")
+    universidad = models.CharField(max_length=100, null=True, verbose_name="universidad")
+
+    class Meta:
+        """Meta definition for ConferenciaInternacionalOrg."""
+        verbose_name = 'Semillero Internacional'
+        verbose_name_plural = 'Semillero Internacional - ORGANIZADORES'
+
+    def __str__(self):
+        """Unicode representation of ConferenciaInternacionalOrg."""
+        return self.nombre_organizador
 
 
 class RegistroGeneral(models.Model):

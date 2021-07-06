@@ -45,6 +45,11 @@ urlpatterns = [
     path('db_bindin/', views.db_bindin),
     path('test_bindin/', views.test_bindin),
 
+    # Bindin - Organizadores
+    path('buscador_bindin_org/', views.buscador_bindin_org),
+    path('db_bindin_org/', views.db_bindin_org),
+    path('test_bindin_org/', views.test_bindin_org),
+
     # Asistencia Bindin2
     path('buscador_asistencia/', views.buscador_asistencia),
     path('table_validation/', views.table_validation),
