@@ -615,7 +615,7 @@ def test_bindin(request):
             f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (925, 959)
+        coordenadas = (925, 900)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
             f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 400)
@@ -636,7 +636,7 @@ def test_bindin(request):
             f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (1056, 1023)
+        coordenadas = (1056, 990)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
             f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
@@ -657,7 +657,7 @@ def test_bindin(request):
             f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (851, 1023)
+        coordenadas = (851, 990)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
             f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
@@ -706,7 +706,7 @@ def test_bindin_org(request):
             f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin_org.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (925, 959)
+        coordenadas = (925, 900)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
             f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 400)
@@ -727,7 +727,7 @@ def test_bindin_org(request):
             f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin_org.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (1056, 1023)
+        coordenadas = (1056, 990)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
             f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
@@ -748,7 +748,7 @@ def test_bindin_org(request):
             f'{settings.BASE_DIR}/staticfiles/images/certificado_bindin_org.jpg')
         nuevo = ImageDraw.Draw(certificado)
 
-        coordenadas = (851, 1023)
+        coordenadas = (851, 990)
         color_texto = (0, 0, 0)
         tipo_letra = ImageFont.truetype(
             f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 300)
