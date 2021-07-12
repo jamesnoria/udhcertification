@@ -20,6 +20,8 @@ from .models import ConferenciaInternacionalOrg
 
 from .models import RegistroGeneral
 from .models import Bindin
+from .models import EcoConcurso
+from .models import EcoAsistencia
 
 class RegistroAdmin(ImportExportModelAdmin):
     list_display=('nombre_alumno', 'creacion_cert', 'username', 'dni', 'carrera', 'id')
@@ -71,6 +73,15 @@ class BindinAdmin(ImportExportModelAdmin):
     list_display=('nombre_participante', 'creacion_cert', 'dni', 'email', 'pais', 'id')
     search_fields=('nombre_participante', 'dni')
 
+class EcoConAdmin(ImportExportModelAdmin):
+    list_display=('nombre_participante', 'dni', 'correo', 'id')
+    search_fields=('nombre_participante', 'dni')
+
+class EcoAsiAdmin(ImportExportModelAdmin):
+    list_display = ('nombre_participante', 'dni', 'correo', 'id')
+    search_fields = ('nombre_participante', 'dni')
+
+
 admin.site.register(Registro, RegistroAdmin)
 admin.site.register(Mentore, MentoreAdmin)
 admin.site.register(Ponentes, PonentesAdmin)
@@ -82,5 +93,8 @@ admin.site.register(ConferenciaInternacionalOrg, ConfInterOrgAdmin)
 admin.site.register(ConferenciaInternacional, ConfInterAdmin)
 admin.site.register(RegistroGeneral, RegistroGeneralAdmin)
 admin.site.register(Bindin, BindinAdmin)
+
+admin.site.register(EcoAsistencia, EcoAsiAdmin)
+admin.site.register(EcoConcurso, EcoConAdmin)
 
 admin.site.site_header = 'UDH - CERTIFICADOS'

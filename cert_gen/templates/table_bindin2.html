@@ -201,7 +201,6 @@
             <th>NOMBRE Y APELLIDOS</th>
             <th>DNI</th>
             <th>EMAIL</th>
-            <th>PAIS</th>
           </tr>
         </thead>
         {% for bindin in bindins %}
@@ -210,8 +209,7 @@
             <td>{{ bindin.id }}</td>
             <td>{{ bindin.nombre_participante.title }}</td>
             <td>{{ bindin.dni }}</td>
-            <td>{{ bindin.email }}</td>
-            <td>{{ bindin.pais }}</td>
+            <td>{{ bindin.correo }}</td>
           </tr>
         </tbody>
         {% endfor %}

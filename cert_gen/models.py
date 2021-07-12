@@ -179,6 +179,48 @@ class ConferenciaInternacionalOrg(models.Model):
         return self.nombre_organizador
 
 
+# ---- ECO-CONCURSO ----->
+
+class EcoConcurso(models.Model):
+    """Model definition for EcoConcurso."""
+
+    nombre_participante = models.CharField(max_length=100, null=True, verbose_name='Nombre Participante')
+    dni = models.CharField(max_length=100, null=True, verbose_name='dni o código de alumno')
+    correo = models.CharField(max_length=100, null=True, verbose_name='email')
+
+    class Meta:
+        """Meta definition for EcoConcurso."""
+
+        verbose_name =  'Eco Creatividad'
+        verbose_name_plural =  'Eco Creatividad'
+
+    def __str__(self):
+        """Unicode representation of EcoConcurso."""
+        return self.nombre_participante
+
+
+class EcoAsistencia(models.Model):
+    """Model definition for EcoAsistencia."""
+
+    nombre_participante = models.CharField(max_length=100, null=True, verbose_name='Nombre Participante')
+    dni = models.CharField(max_length=100, null=True, verbose_name='dni o código de alumno')
+    correo = models.CharField(max_length=100, null=True, verbose_name='email')
+
+    class Meta:
+        """Meta definition for EcoAsistencia."""
+
+        verbose_name = 'Eco Creatividad - ASISTENCIA'
+        verbose_name_plural = 'Eco Creatividad - ASISTENCIA'
+
+    def __str__(self):
+        """Unicode representation of EcoAsistencia."""
+        return self.nombre_participante
+
+
+
+# ---- POR DEFINIR ---- >
+
+
 class RegistroGeneral(models.Model):
     """
     Registro general de eventos
@@ -201,7 +243,6 @@ class RegistroGeneral(models.Model):
 
     class Meta:
         verbose_name = 'Registro General'
-
 
 class Bindin(models.Model):
     """ Nuevo registro """

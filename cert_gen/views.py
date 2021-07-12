@@ -13,6 +13,8 @@ from .models import AniversarioAmbientalDocente
 from .models import ConferenciaInternacional
 from .models import ConferenciaInternacionalOrg
 from .models import Bindin
+from .models import EcoAsistencia
+from .models import EcoConcurso
 
 import io
 from PIL import Image, ImageDraw, ImageFont
@@ -773,14 +775,13 @@ def buscador_asistencia(request):
 def table_bindin2(request):
     """ Se recoge datos de dni validado y se alimenta BD de
     nuevo bindin para luego renderizarlo en table2.html  """
-    db = Bindin()
+    db = EcoAsistencia()
     db.nombre_participante = request.GET["user_name"]
     db.dni = request.GET["user_dni"]
-    db.email = request.GET["user_email"]
-    db.pais = request.GET["user_pais"]
+    db.correo = request.GET["user_email"]
     db.save()
 
-    bindin = Bindin.objects.all()
+    bindin = EcoAsistencia.objects.all()
     context = {
         'bindins': bindin,
     }
@@ -793,12 +794,12 @@ def table_validation(request):
     codigo_udh = request.GET["dni"]
 
     try:
-        if ConferenciaInternacional.objects.get(dni__exact=codigo_udh):
-            registro = ConferenciaInternacional.objects.filter(dni=codigo_udh)
+        if EcoConcurso.objects.get(dni__exact=codigo_udh):
+            registro = EcoConcurso.objects.filter(dni=codigo_udh)
             context = {
                 'registros': registro,
             }
 
         return render(request, 'table_dni_finder.html', context)
-    except ConferenciaInternacional.DoesNotExist:
+    except EcoConcurso.DoesNotExist:
         return render(request, 'table_dni_finder.html')

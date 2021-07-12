@@ -230,7 +230,6 @@
             <th>NOMBRE Y APELLIDOS</th>
             <th>DNI</th>
             <th>EMAIL</th>
-            <th>PAIS</th>
             <th>ASISTENCIA</th>
           </tr>
           </thead>
@@ -239,8 +238,7 @@
           <tr>
             <td>{{ registro.nombre_participante.title }}</td>
             <td>{{ registro.dni }}</td>
-            <td>{{ registro.email }}</td>
-            <td>{{ registro.pais }}</td>
+            <td>{{ registro.correo }}</td>
             <td>
               <form action="/table_asistencia/" method="GET">
                   <input
@@ -256,12 +254,7 @@
                   <input
                     type="hidden"
                     name="user_email"
-                    value="{{ registro.email }}"
-                  />
-                  <input
-                    type="hidden"
-                    name="user_pais"
-                    value="{{ registro.pais }}"
+                    value="{{ registro.correo }}"
                   />
                   <button class="button">Confirmar</button>
                 </form>
