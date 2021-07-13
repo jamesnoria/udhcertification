@@ -74,7 +74,7 @@ class BindinAdmin(ImportExportModelAdmin):
     search_fields=('nombre_participante', 'dni')
 
 class EcoConAdmin(ImportExportModelAdmin):
-    list_display=('nombre_participante', 'dni', 'correo', 'id')
+    list_display=('nombre_participante', 'dni', 'correo')
     search_fields=('nombre_participante', 'dni')
 
 class EcoAsiAdmin(ImportExportModelAdmin):
