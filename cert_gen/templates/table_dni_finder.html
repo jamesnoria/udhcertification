@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="James Noria" />
-    <title>FELICIDADES</title>
+    <title>REGISTRO ASISTENCIA - ECO</title>
   </head>
   <style>
     * {
@@ -212,17 +212,39 @@
     .form-search {
       text-align: center;
     }
+    .img-logo{
+      text-align: center;
+    }
+    img {
+      width: 400px;
+      border-radius: 50px;
+    }
   </style>
   <body>
-    <h2>Registro de Asistencia <br> <p>Inserte su DNI o CÓDIGO DE ALUMNO (SI ES ALUMNO UDH), <br>verifique sus datos y confirme su asistencia</p></h2>
+    {% load static %}
+    <p class="img-logo">
+      <img src="{% static 'images/eco_logo.jpeg' %}" alt="" />
+    </p>
+    <h2>
+      Registro de Asistencia <br />
+      <p>
+        Inserte su DNI, verifique
+        sus datos y confirme su asistencia. <br> (evite incluir espacios vacios al comienzo o final de su dni)
+      </p>
+    </h2>
     <form class="form-search" action="/table_validation/" method="GET">
       <div class="form-input">
         <label for="name"></label>
-        <input type="text" id="dni" name="dni" placeholder="DNI o código de alumno" />
+        <input
+          type="text"
+          id="dni"
+          name="dni"
+          placeholder="DNI"
+        />
         <button class="subscribe-btn">Verificar</button>
       </div>
     </form>
-    <br>
+    <br />
     <div class="table-wrapper">
       <table class="fl-table">
         <thead>
@@ -232,8 +254,8 @@
             <th>EMAIL</th>
             <th>ASISTENCIA</th>
           </tr>
-          </thead>
-          <tbody>
+        </thead>
+        <tbody>
           {% for registro in registros %}
           <tr>
             <td>{{ registro.nombre_participante.title }}</td>
@@ -241,25 +263,25 @@
             <td>{{ registro.correo }}</td>
             <td>
               <form action="/table_asistencia/" method="GET">
-                  <input
-                    type="hidden"
-                    name="user_name"
-                    value="{{ registro.nombre_participante }}"
-                  />
-                  <input
-                    type="hidden"
-                    name="user_dni"
-                    value="{{ registro.dni }}"
-                  />
-                  <input
-                    type="hidden"
-                    name="user_email"
-                    value="{{ registro.correo }}"
-                  />
-                  <button class="button">Confirmar</button>
-                </form>
-              </td>
-            </tr>
+                <input
+                  type="hidden"
+                  name="user_name"
+                  value="{{ registro.nombre_participante }}"
+                />
+                <input
+                  type="hidden"
+                  name="user_dni"
+                  value="{{ registro.dni }}"
+                />
+                <input
+                  type="hidden"
+                  name="user_email"
+                  value="{{ registro.correo }}"
+                />
+                <button class="button">Confirmar</button>
+              </form>
+            </td>
+          </tr>
         </tbody>
         {% endfor %}
 
