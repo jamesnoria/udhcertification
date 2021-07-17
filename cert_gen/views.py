@@ -1,362 +1,28 @@
+# Django
 from django.shortcuts import render
 from django.http import HttpResponse
 
+# Pip
+import io
+from PIL import Image, ImageDraw, ImageFont
+
+# My settings for BASE DIR
 from certification import settings
 
-from .models import Registro
-from .models import Mentore
-from .models import Ponentes
-from .models import Des_Log
-from .models import Innova
+# My models
 from .models import AniversarioAmbiente
 from .models import AniversarioAmbientalDocente
 from .models import ConferenciaInternacional
 from .models import ConferenciaInternacionalOrg
-from .models import Bindin
 from .models import EcoAsistencia
 from .models import EcoConcurso
 
-import io
-from PIL import Image, ImageDraw, ImageFont
+# ----- INDEX ----->
 
 
 def index(request):
 
     return render(request, 'index.html')
-
-
-def registro_general(request):
-
-    return render(request, 'register_form.html')
-
-
-def innovation_challenge(request):
-
-    return render(request, 'generadores/innovation_cha.html')
-
-
-def mentores(request):
-
-    return render(request, 'generadores/mentores.html')
-
-
-def ponentes(request):
-
-    return render(request, 'generadores/ponentes.html')
-
-
-def des_log(request):
-
-    return render(request, 'generadores/des_logistica.html')
-
-
-def innova(request):
-
-    return render(request, 'generadores/innova62.html')
-
-
-def ani_ambiente(request):
-
-    return render(request, 'generadores/ambiente.html')
-
-
-def conf_internacional(request):
-
-    return render(request, 'generadores/conf_inter.html')
-
-
-def generator_ic(request):
-    """
-    generador para innovation challenge
-    """
-    if request.method == 'GET':
-
-        db = Registro()
-        db.nombre_alumno = request.GET["name"].title()
-        db.username = request.user.username
-        db.dni = request.GET["dni"]
-        db.carrera = request.GET["carrera"]
-        db.evento = "Innovation Challenge"
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-
-    certificado = Image.open(
-        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
-
-    coordenadas = (589, 483)
-    color_texto = (0, 0, 0)
-    tipo_letra = ImageFont.truetype(
-        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
-
-    pdf_response = HttpResponse(
-        stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
-
-    return pdf_response
-
-
-def generator_men(request):
-    """
-    generador para mentores
-    """
-    if request.method == 'GET':
-
-        db = Mentore()
-        db.nombre_mentor = request.GET["name"].title()
-        db.username = request.user.username
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-
-    certificado = Image.open(
-        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
-
-    coordenadas = (589, 483)
-    color_texto = (0, 0, 0)
-    tipo_letra = ImageFont.truetype(
-        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
-
-    pdf_response = HttpResponse(
-        stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
-
-    return pdf_response
-
-
-def generator_pon(request):
-    """
-    generador para ponentes
-    """
-    if request.method == 'GET':
-
-        db = Ponentes()
-        db.nombre_ponente = request.GET["name"].title()
-        db.username = request.user.username
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-
-    certificado = Image.open(
-        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
-
-    coordenadas = (589, 483)
-    color_texto = (0, 0, 0)
-    tipo_letra = ImageFont.truetype(
-        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
-
-    pdf_response = HttpResponse(
-        stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
-
-    return pdf_response
-
-
-def generator_des_log(request):
-    """
-    generador para Desarrollo y Logistica
-    """
-    if request.method == 'GET':
-
-        db = Des_Log()
-        db.nombre_participante = request.GET["name"].title()
-        db.username = request.user.username
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-
-    certificado = Image.open(
-        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
-
-    coordenadas = (589, 483)
-    color_texto = (0, 0, 0)
-    tipo_letra = ImageFont.truetype(
-        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
-
-    pdf_response = HttpResponse(
-        stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
-
-    return pdf_response
-
-
-def generator_innova(request):
-    """
-    generador para innova62
-    """
-    if request.method == 'GET':
-
-        db = Innova()
-        db.nombre_participante = request.GET["name"].title()
-        db.username = request.user.username
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-
-    certificado = Image.open(
-        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
-
-    coordenadas = (589, 483)
-    color_texto = (0, 0, 0)
-    tipo_letra = ImageFont.truetype(
-        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
-
-    pdf_response = HttpResponse(
-        stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
-
-    return pdf_response
-
-
-def generator_ani(request):
-    """
-    generador para aniversario de ambiental
-    """
-    if request.method == 'GET':
-
-        db = AniversarioAmbiente()
-        db.nombre_participante = request.GET["name"].upper()
-        db.codigo_udh = request.GET["dni"]
-        db.email = request.GET["email"]
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-    name = nombre.replace(',', '')
-    codigo = 'none'
-
-    if len(name) <= 22:
-
-        certificado = Image.open(
-            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
-        nuevo = ImageDraw.Draw(certificado)
-
-        coordenadas = (531, 564)
-        coordenadas_2 = (222, 364)
-        color_texto = (0, 0, 0)
-        tipo_letra = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-        tipo_letra_2 = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
-
-        nuevo.text(coordenadas, name.title(),
-                   fill=color_texto, font=tipo_letra)
-        nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
-        certificado.save(stream, format='pdf')
-
-        pdf_response = HttpResponse(
-            stream.getvalue(), content_type='application/pdf')
-        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
-
-        return pdf_response
-
-    elif len(name) <= 30:
-
-        certificado = Image.open(
-            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
-        nuevo = ImageDraw.Draw(certificado)
-
-        coordenadas = (531, 564)
-        coordenadas_2 = (222, 364)
-        color_texto = (0, 0, 0)
-        tipo_letra = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 180)
-        tipo_letra_2 = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
-
-        nuevo.text(coordenadas, name.title(),
-                   fill=color_texto, font=tipo_letra)
-        nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
-        certificado.save(stream, format='pdf')
-
-        pdf_response = HttpResponse(
-            stream.getvalue(), content_type='application/pdf')
-        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
-
-        return pdf_response
-
-    else:
-
-        certificado = Image.open(
-            f'{settings.BASE_DIR}/staticfiles/images/certificado_ambiental.jpg')
-        nuevo = ImageDraw.Draw(certificado)
-
-        coordenadas = (528, 606)
-        coordenadas_2 = (222, 364)
-        color_texto = (0, 0, 0)
-        tipo_letra = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 150)
-        tipo_letra_2 = ImageFont.truetype(
-            f'{settings.BASE_DIR}/staticfiles/fonts/script.ttf', 30)
-
-        nuevo.text(coordenadas, name.title(),
-                   fill=color_texto, font=tipo_letra)
-        nuevo.text(coordenadas_2, codigo, fill=color_texto, font=tipo_letra_2)
-        certificado.save(stream, format='pdf')
-
-        pdf_response = HttpResponse(
-            stream.getvalue(), content_type='application/pdf')
-        pdf_response['Content-Disposition'] = f'attachment; filename={name.title()}.pdf'
-
-        return pdf_response
-
-
-def generator_conf(request):
-    """
-    generador para conferencia internacional
-    """
-    if request.method == 'GET':
-
-        db = ConferenciaInternacional()
-        db.nombre_participante = request.GET["name"].title()
-        db.username = request.user.username
-        db.save()
-
-    stream = io.BytesIO()
-    nombre = request.GET["name"]
-
-    certificado = Image.open(
-        f'{settings.BASE_DIR}/staticfiles/images/certificado.jpg')
-    nuevo = ImageDraw.Draw(certificado)
-
-    coordenadas = (589, 483)
-    color_texto = (0, 0, 0)
-    tipo_letra = ImageFont.truetype(
-        f'{settings.BASE_DIR}/staticfiles/fonts/bergamote.ttf', 200)
-
-    nuevo.text(coordenadas, nombre.title(), fill=color_texto, font=tipo_letra)
-    certificado.save(stream, format='pdf')
-
-    pdf_response = HttpResponse(
-        stream.getvalue(), content_type='application/pdf')
-    pdf_response['Content-Disposition'] = f'attachment; filename={nombre.title()}.pdf'
-
-    return pdf_response
 
 # ----- AMBIENTAL ----->
 
@@ -367,7 +33,7 @@ def buscador(request):
 
 
 def db(request):
-    """ BD que conecta con table.html """
+    """ BD donde se consulta si el alumno existe o es participante """
     codigo_udh = request.GET["dni"]
 
     try:
@@ -384,7 +50,7 @@ def db(request):
 
 
 def test(request):
-    """ Generador en table.html """
+    """ Generador de certificado una vez que el ususario fue encontrado en la BD """
     stream = io.BytesIO()
     nombre = request.GET["nombre"]
     name = nombre.replace(',', '')
@@ -474,7 +140,7 @@ def buscador_docente(request):
 
 
 def db_docente(request):
-    """ BD que conecta con table_amb_doc.html """
+    """ BD donde se consulta si el organizador existe o es participante """
     codigo_udh = request.GET["dni"]
 
     try:
@@ -491,7 +157,7 @@ def db_docente(request):
 
 
 def test_docente(request):
-    """ Generador para certificados organizadores """
+    """ Generador de certificado una vez que el ususario fue encontrado en la BD """
     stream = io.BytesIO()
     name = request.GET["nombre"]
 
@@ -590,7 +256,7 @@ def buscador_bindin(request):
 
 
 def db_bindin(request):
-    """ db que conecnta con table_bindin.html """
+    """ Valida si la persona es participante o no """
     dni = request.GET["dni"]
 
     try:
@@ -607,7 +273,7 @@ def db_bindin(request):
 
 
 def test_bindin(request):
-    """ Generador en table_bindin.html """
+    """ Generador de certificado si el usuario valido """
     stream = io.BytesIO()
     name = request.GET["nombre"]
 
@@ -681,8 +347,9 @@ def buscador_bindin_org(request):
 
     return render(request, 'buscador_bindin_org.html')
 
+
 def db_bindin_org(request):
-    """ db que conecnta con table_bindin_org.html """
+    """ db que busca si el organizador se encuentra en la BD """
     dni = request.GET["dni"]
 
     try:
@@ -697,8 +364,9 @@ def db_bindin_org(request):
     except ConferenciaInternacionalOrg.DoesNotExist:
         return render(request, 'not_found_ibndin_org.html')
 
+
 def test_bindin_org(request):
-    """ Generador en table_bindin_org.html """
+    """ Generador de certificado si el usuario se encuentra """
     stream = io.BytesIO()
     name = request.GET["nombre"]
 
@@ -765,7 +433,8 @@ def test_bindin_org(request):
 
         return pdf_response
 
-# ----- ASISTENCIA ---->
+# ----- ASISTENCIA ECO - CREATIVIDAD ---->
+
 
 def buscador_asistencia(request):
     """ Buscador con dni y tabla - ONLY HTML """
@@ -774,7 +443,7 @@ def buscador_asistencia(request):
 
 def table_bindin2(request):
     """ Se recoge datos de dni validado y se alimenta BD de
-    nuevo bindin para luego renderizarlo en table2.html  """
+    EcoAsistencia para luego renderizarlo en table2.html  """
     db = EcoAsistencia()
     db.nombre_participante = request.GET["user_name"]
     db.dni = request.GET["user_dni"]
@@ -789,7 +458,7 @@ def table_bindin2(request):
 
 
 def table_validation(request):
-    """ Backend que valida que el usuario sea miembro del semillero """
+    """ Backend que valida que el usuario sea miembro del evento (eco-creatividad) """
 
     codigo_udh = request.GET["dni"]
 

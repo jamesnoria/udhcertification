@@ -1,5 +1,3 @@
-{% if request.user.username == 'richardmarin' or user.is_superuser%}
-{% include "nav_bar.html" %}
 <!-- James Noria | Twitter: @jamesnoria | Contacto: jamesnoria@gmail.com -->
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -12,7 +10,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="James Noria" />
-    <title>Generador | I. Challenge</title>
+    <title>Registro</title>
   </head>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
@@ -30,7 +28,7 @@
       background: #2f3242;
     }
     .wrapper {
-      margin-top: 30px;
+      margin-top: 70px;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -121,13 +119,12 @@
   <body>
     <div class="wrapper">
       <div class="top">
-        <i class="fa fa-bolt" aria-hidden="true"></i>
+        <i class="fa fa-address-card" aria-hidden="true"></i>
       </div>
       <div class="bottom">
-        <div class="info">Generador para<br />Innovation Challenge</div>
         <form
-          onSubmit="if(!confirm(name.value + ' ¿Es el nombre correcto?')){return false;}"
-          action="/generator_ic/"
+          onSubmit="if(!confirm('¿Los datos a registrar son todos correctos?')){return false;}"
+          action="/generator_ani/"
           method="GET"
         >
           <div class="input-box">
@@ -135,67 +132,86 @@
               type="text"
               id="name"
               name="name"
-              placeholder="Nombre completo"
+              placeholder="Nombre"
               required
             />
           </div>
           <div class="input-box">
-            <input type="text" id="dni" name="dni" placeholder="DNI" required />
+            <input
+              type="text"
+              id="name"
+              name="lastname"
+              placeholder="Apellidos"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <input
+              type="text"
+              id="name"
+              name="age"
+              placeholder="Edad"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <input
+              type="text"
+              id="dni"
+              name="dni"
+              placeholder="DNI o Cédula"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <input
+              type="text"
+              id="dni"
+              name="tel"
+              placeholder="Celular"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <input
+              type="text"
+              id="dni"
+              name="mail"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <input
+              type="text"
+              id="name"
+              name="college"
+              placeholder="Centro educativo"
+              required
+            />
           </div>
           <div class="list-select">
-            <select name="carrera" id="carrera">
-              <option selected value="0">Elige una carrera</option>
-              <optgroup label="DERECHO Y CIENCIAS POLITICAS">
-                <option value="Derecho y Ciencias Políticas">
-                  Derecho y Ciencias Políticas
-                </option>
-              </optgroup>
-              <optgroup label="CIENCIAS DE LA SALUD">
-                <option value="Obstetricia">Obstetricia</option>
-                <option value="Enfermería">Enfermería</option>
-                <option value="Odontología">Odontología</option>
-                <option value="Psicología">Psicología</option>
-              </optgroup>
-              <optgroup label="INGENERÍA">
-                <option value="Sistemas e Informática">
-                  Sistemas e Informática
-                </option>
-                <option value="Civil">Civil</option>
-                <option value="Arquitectura">Arquitectura</option>
-                <option value="Ambiental">Ambiental</option>
-                <option value="Zootecnia">Zootecnia</option>
-              </optgroup>
-              <optgroup label="CIENCIAS DE LA EDUCACIÓN Y HUMANIDADES">
-                <option value="Inicial y Primaria">Inicial y Primaria</option>
-                <option value="Especialidad en Inglés">
-                  Especialidad en Inglés
-                </option>
-              </optgroup>
-              <optgroup label="CIENCIAS EMPRESARIALES">
-                <option value="Administración de Empresas">
-                  Administración de Empresas
-                </option>
-                <option value="Contabilidad y Finanzas">
-                  Contabilidad y Finanzas
-                </option>
-                <option value="Turismo, Hotelería y Gastronomía">
-                  Turismo, Hotelería y Gastronomía
-                </option>
-                <option value="Marketing y Negocios Internacionales">
-                  Marketing y Negocios Internacionales
-                </option>
-              </optgroup>
+            <select name="country" id="carrera">
+              <option value="Perú">Perú</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Brasil">Brasil</option>
             </select>
           </div>
           <div class="input-box">
-            <input type="submit" value="Generar" />
+            <input
+              type="text"
+              id="name"
+              name="city"
+              placeholder="Ciudad"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <input type="submit" value="Enviar" />
           </div>
         </form>
-        <div class="footer" style="font-size: 10px">
-          &copy James Noria - 912 721 774
-        </div>
       </div>
     </div>
   </body>
 </html>
-{% else %} {% include "error.html" %} {% endif %}
